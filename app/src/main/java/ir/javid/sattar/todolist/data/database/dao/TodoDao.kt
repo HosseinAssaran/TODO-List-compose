@@ -18,5 +18,5 @@ interface TodoDao {
     suspend fun upsertTodos(todos: List<TodoItemEntity>)
 
     @Query("DELETE FROM TodoItemEntity where id in (:ids)")
-    suspend fun clearAllMovies(ids: List<Int>):Int
+    suspend fun deleteTodos(ids: List<Int>):Int
 }
