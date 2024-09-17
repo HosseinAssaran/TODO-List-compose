@@ -7,11 +7,13 @@ import kotlinx.coroutines.flow.Flow
 
 interface TodoRepository {
 
+    fun saveTodo(model: TodoItem): Flow<Unit>
+
     fun getPagingTodos(): Flow<PagingData<TodoItemEntity>>
 
     fun getTodo(id: Int): Flow<TodoItem>
 
     fun deleteTodo(ids: List<Int>): Flow<Int>
 
-    fun saveTodo(model: TodoItem): Flow<Unit>
+    fun pinTodo(isPin: Boolean, todoId:Int): Flow<Int>
 }

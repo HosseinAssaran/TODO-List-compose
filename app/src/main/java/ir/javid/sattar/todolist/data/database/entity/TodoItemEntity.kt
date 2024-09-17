@@ -8,7 +8,7 @@ import ir.javid.sattar.todolist.features.todoList.data.model.TodoItem
 data class TodoItemEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val title: String,
+    val title: String?,
     val message: String,
     val isPin: Boolean = false,
 )

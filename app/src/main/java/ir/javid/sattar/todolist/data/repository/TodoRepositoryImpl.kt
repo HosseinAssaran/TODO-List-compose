@@ -17,6 +17,12 @@ import javax.inject.Inject
 class TodoRepositoryImpl @Inject constructor(
     private val dao: TodoDao
 ) : TodoRepository {
+
+    override fun saveTodo(model: TodoItem): Flow<Unit> = callbackFlow {
+        val effect = dao.upsertTodos(listOf(model.toTodoItemEntity()))
+        trySend(effect)
+        awaitClose { cancel() }
+    }
     override fun getPagingTodos(): Flow<PagingData<TodoItemEntity>> =
         Pager(
             config = PagingConfig(pageSize = 20),
@@ -36,8 +42,8 @@ class TodoRepositoryImpl @Inject constructor(
         awaitClose { cancel() }
     }
 
-    override fun saveTodo(model: TodoItem): Flow<Unit> = callbackFlow {
-        val effect = dao.upsertTodos(listOf(model.toTodoItemEntity()))
+    override fun pinTodo(isPin: Boolean, todoId:Int): Flow<Int> = callbackFlow {
+        val effect = dao.pinTodo(isPin,todoId)
         trySend(effect)
         awaitClose { cancel() }
     }

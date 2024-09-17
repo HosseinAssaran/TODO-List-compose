@@ -8,7 +8,7 @@ import ir.javid.sattar.todolist.data.database.entity.TodoItemEntity
 
 @Dao
 interface TodoDao {
-    @Query("SELECT * FROM TodoItemEntity")
+    @Query("SELECT * FROM TodoItemEntity order by isPin desc, id desc ")
     fun getAllTodos(): PagingSource<Int, TodoItemEntity>
 
     @Query("SELECT * FROM TodoItemEntity where id = :id")
@@ -19,4 +19,7 @@ interface TodoDao {
 
     @Query("DELETE FROM TodoItemEntity where id in (:ids)")
     suspend fun deleteTodos(ids: List<Int>):Int
+
+    @Query("UPDATE TodoItemEntity set isPin = :isPin  where id in (:todoId)")
+    suspend fun pinTodo(isPin: Boolean, todoId:Int):Int
 }

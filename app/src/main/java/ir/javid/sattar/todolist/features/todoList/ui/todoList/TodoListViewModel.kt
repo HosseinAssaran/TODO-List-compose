@@ -9,10 +9,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.javid.sattar.todolist.data.database.entity.toTodoItem
 import ir.javid.sattar.todolist.features.todoList.data.model.TodoItem
 import ir.javid.sattar.todolist.features.todoList.domain.AddTodoUseCase
+import ir.javid.sattar.todolist.features.todoList.domain.DeleteTodoUseCase
+import ir.javid.sattar.todolist.features.todoList.domain.PinTodoUseCase
 import ir.javid.sattar.todolist.features.todoList.domain.TodoListUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,15 +24,9 @@ import javax.inject.Inject
 @HiltViewModel
 class TodoListViewModel @Inject constructor(
     todoListUseCase: TodoListUseCase,
-    addTodoUseCase: AddTodoUseCase
+    private val deleteTodoUseCase: DeleteTodoUseCase,
+    private val pinTodoUseCase: PinTodoUseCase,
 ) : ViewModel() {
-
-    init {
-        viewModelScope.launch {
-            addTodoUseCase.invoke(TodoItem(title = "title", message = "message", isPin = false))
-        }
-    }
-
 
     val todoList: Flow<PagingData<TodoItem>> =
         todoListUseCase
@@ -38,4 +35,14 @@ class TodoListViewModel @Inject constructor(
             .mapLatest {
                 it.map { it.toTodoItem() }
             }.catch { e -> e.printStackTrace() }
+
+    fun deleteTodo(it: TodoItem) = viewModelScope.launch {
+        deleteTodoUseCase.invoke(it).collect()
+    }
+
+    fun togglePin(isPin: Boolean, todoId:Int) = viewModelScope.launch{
+        pinTodoUseCase.invoke(isPin, todoId).collect()
+    }
+
+
 }
