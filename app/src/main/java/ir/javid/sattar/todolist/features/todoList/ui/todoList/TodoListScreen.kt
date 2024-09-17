@@ -218,28 +218,28 @@ fun TodoListItem(
             }
             Spacer(modifier = Modifier.width(10.dp))
 
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(vertical = 10.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            if (item.title != null)
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(vertical = 10.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                if (item.title != null)
+                    Text(
+                        text = item.title,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+
                 Text(
-                    text = item.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
+                    text = item.message,
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 5,
                     overflow = TextOverflow.Ellipsis
                 )
-
-            Text(
-                text = item.message,
-                style = MaterialTheme.typography.bodySmall,
-                maxLines = 5,
-                overflow = TextOverflow.Ellipsis
-            )
+            }
         }
-    }
     }
 }
