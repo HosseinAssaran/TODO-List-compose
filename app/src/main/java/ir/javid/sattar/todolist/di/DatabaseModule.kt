@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ir.javid.sattar.todolist.data.database.TodoDatabase
+import ir.javid.sattar.todolist.data.database.dao.TodoDao
 import javax.inject.Singleton
 
 @Module
@@ -18,11 +19,17 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
-    ): TodoDatabase {
-        return Room.databaseBuilder(
+    ): TodoDatabase = Room.databaseBuilder(
             context,
             TodoDatabase::class.java,
             "todo-database"
-        ).build()
-    }
+        ).fallbackToDestructiveMigration()
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideDao(
+        db: TodoDatabase
+    ): TodoDao = db.todoDao()
+
 }
