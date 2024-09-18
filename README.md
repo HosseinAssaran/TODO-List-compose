@@ -30,6 +30,7 @@ This project leverages several cutting-edge Android development technologies:
 
 ## Features
 
+- Clean architecture
 - Smooth infinite scrolling experience
 - Local caching for offline access
 - Clean and modern UI built with Jetpack Compose
