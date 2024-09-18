@@ -1,6 +1,6 @@
-# Paging 3 with Jetpack Compose - TMDB App
+# Paging 3 with Jetpack Compose - TODO List App
 
-A modern Android application showcasing the integration of Jetpack Compose with Paging 3, utilizing The Movie Database (TMDb) API to display a list of movies with infinite scrolling.
+A modern Android application showcasing the integration of Jetpack Compose with Paging 3 with infinite scrolling.
 
 <table>
   <tr>
