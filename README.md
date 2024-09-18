@@ -2,6 +2,8 @@
 
 A modern Android application showcasing the integration of Jetpack Compose with Paging 3 with infinite scrolling.
 
+<a href="https://github.com/javiddeveloper/TODO-List-compose/blob/master/app-debug.apk">Download APK File for review</a>
+
 <table>
   <tr>
     <td><img src="1.jpg" alt="Home Screen" width="300"/></td>
