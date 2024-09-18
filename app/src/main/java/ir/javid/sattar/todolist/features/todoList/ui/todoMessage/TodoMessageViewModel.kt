@@ -37,6 +37,10 @@ class TodoMessageViewModel @Inject constructor(
 
     fun upsertTodo(it: TodoItem) = viewModelScope.launch {
         try {
+            if (it.message.isEmpty()){
+                _saveState.value = SaveState.Success
+                return@launch
+            }
             addTodoUseCase.invoke(it).collectLatest {
                 _saveState.value = SaveState.Success
             }

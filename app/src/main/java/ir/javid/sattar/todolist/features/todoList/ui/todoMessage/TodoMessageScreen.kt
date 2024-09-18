@@ -18,7 +18,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,12 +28,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import ir.javid.sattar.todolist.features.todoList.data.model.TodoItem
+import ir.javid.sattar.todolist.ui.components.CustomTextField
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalFoundationApi
@@ -119,10 +118,10 @@ fun TodoMessageScreen(
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
-            TextField(
+            CustomTextField(
                 value = title,
                 onValueChange = { title = it },
-                placeholder = { Text("Title") },
+                placeholder = "Title",
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 modifier = Modifier.fillMaxWidth()
@@ -130,15 +129,15 @@ fun TodoMessageScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            TextField(
+            CustomTextField(
                 value = note,
                 onValueChange = { note = it },
-                placeholder = { Text("Note") },
+                placeholder = "Note",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f)
-                    .focusRequester(focusRequester),
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Default)
+                    .weight(1f),
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Default),
+                focusRequester = focusRequester
             )
         }
     }
