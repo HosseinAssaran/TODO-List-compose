@@ -8,7 +8,7 @@ A modern Android application showcasing the integration of Jetpack Compose with 
     <td><img src="2.jpg" alt="Home Screen" width="300"/></td>
     <td><img src="3.jpg" alt="Home Screen" width="300"/></td>
     <td><img src="4.jpg" alt="Home Screen" width="300"/></td>
-    <td><img src="5.jpg" alt="Home Screen" width="300"/></td>
+    <td><img src="6.jpg" alt="Home Screen" width="300"/></td>
   </tr>
 </table>
 
